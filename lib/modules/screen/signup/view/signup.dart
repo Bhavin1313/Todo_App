@@ -3,19 +3,21 @@ import 'package:get/get.dart';
 
 import '../../../../utils/globals/global.dart';
 
-class Login extends StatefulWidget {
-  const Login({super.key});
+class Signup extends StatefulWidget {
+  const Signup({super.key});
 
   @override
-  State<Login> createState() => _LoginState();
+  State<Signup> createState() => _SignupState();
 }
 
-class _LoginState extends State<Login> {
+class _SignupState extends State<Signup> {
   GlobalKey<FormState> formKey = GlobalKey<FormState>();
-  String? email;
-  String? pass;
-  TextEditingController email_c = TextEditingController();
-  TextEditingController pass_c = TextEditingController();
+  String? s_email;
+  String? s_pass;
+  String? name;
+  TextEditingController s_email_c = TextEditingController();
+  TextEditingController s_pass_c = TextEditingController();
+  TextEditingController s_name_c = TextEditingController();
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -46,6 +48,9 @@ class _LoginState extends State<Login> {
                   crossAxisAlignment: CrossAxisAlignment.start,
                   mainAxisAlignment: MainAxisAlignment.center,
                   children: [
+                    SizedBox(
+                      height: 50,
+                    ),
                     Center(
                       child: Image.asset("assets/Checkmark.png"),
                     ),
@@ -53,11 +58,11 @@ class _LoginState extends State<Login> {
                       height: 30,
                     ),
                     Text(
-                      "Welcome Back to DO IT ",
+                      "Welcome to DO IT",
                       style: Global.poppins25,
                     ),
                     Text(
-                      "Have an other productive day !",
+                      "create an account and Join us now!",
                       style: Global.poppins18,
                     ),
                     const SizedBox(
@@ -71,15 +76,15 @@ class _LoginState extends State<Login> {
                           return null;
                         }
                       },
-                      controller: email_c,
+                      controller: s_email_c,
                       onSaved: (val) {
-                        email = val!;
+                        s_email = val!;
                       },
                       decoration: InputDecoration(
                         prefixIcon: IconButton(
                           onPressed: () {},
                           icon: const Icon(
-                            Icons.email,
+                            Icons.person,
                             size: 30,
                           ),
                         ),
@@ -98,14 +103,46 @@ class _LoginState extends State<Login> {
                     TextFormField(
                       validator: (val) {
                         if (val!.isEmpty) {
+                          return "Enter Valid name";
+                        } else {
+                          return null;
+                        }
+                      },
+                      controller: s_name_c,
+                      onSaved: (val) {
+                        name = val!;
+                      },
+                      decoration: InputDecoration(
+                        prefixIcon: IconButton(
+                          onPressed: () {},
+                          icon: const Icon(
+                            Icons.email,
+                            size: 30,
+                          ),
+                        ),
+                        filled: true,
+                        fillColor: Colors.white,
+                        hintText: "Full Name",
+                        hintStyle: Global.poppins18black,
+                        border: outlineInputBorder(),
+                        enabledBorder: outlineInputBorder(),
+                        focusedBorder: outlineInputBorder(),
+                      ),
+                    ),
+                    const SizedBox(
+                      height: 50,
+                    ),
+                    TextFormField(
+                      validator: (val) {
+                        if (val!.isEmpty) {
                           return "Enter Valid Password";
                         } else {
                           return null;
                         }
                       },
-                      controller: pass_c,
+                      controller: s_pass_c,
                       onSaved: (val) {
-                        pass = val!;
+                        s_pass = val!;
                       },
                       obscureText: true,
                       decoration: InputDecoration(
@@ -126,24 +163,11 @@ class _LoginState extends State<Login> {
                       ),
                     ),
                     SizedBox(
-                      height: 20,
-                    ),
-                    Row(
-                      children: [
-                        Text(""),
-                        Spacer(),
-                        Text(
-                          "forget password?",
-                          style: Global.poppins14,
-                        ),
-                      ],
-                    ),
-                    SizedBox(
                       height: 30,
                     ),
                     GestureDetector(
                       onTap: () {
-                        Get.offNamedUntil('/home', (routes) => false);
+                        Get.offNamedUntil('/login', (routes) => false);
                       },
                       child: Container(
                         height: Get.height * .07,
@@ -154,7 +178,7 @@ class _LoginState extends State<Login> {
                         ),
                         alignment: Alignment.center,
                         child: Text(
-                          "sign in",
+                          "sign up",
                           style: Global.poppins18,
                         ),
                       ),
@@ -166,15 +190,15 @@ class _LoginState extends State<Login> {
                       mainAxisAlignment: MainAxisAlignment.center,
                       children: [
                         Text(
-                          "Don’t have an account? ",
+                          "Already have an account? ",
                           style: Global.poppins14,
                         ),
                         GestureDetector(
                           onTap: () {
-                            Get.toNamed('/signup');
+                            Get.toNamed('/login');
                           },
                           child: Text(
-                            "sign up",
+                            "sign in",
                             style: Global.poppins14blue,
                           ),
                         ),
@@ -187,7 +211,7 @@ class _LoginState extends State<Login> {
                       mainAxisAlignment: MainAxisAlignment.start,
                       children: [
                         Text(
-                          "Sign In with : ",
+                          "Sign Up with : ",
                           style: Global.poppins14,
                         ),
                         SizedBox(

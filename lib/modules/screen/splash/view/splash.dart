@@ -25,8 +25,8 @@ class Splash extends StatelessWidget {
                 Color(0xff05243E),
               ],
               stops: [
-                0.0,
-                1.0
+                0.3,
+                0.9
               ],
               begin: FractionalOffset.topCenter,
               end: FractionalOffset.bottomCenter,
