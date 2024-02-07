@@ -119,10 +119,10 @@ class _IntroState extends State<Intro> {
             child: (Global.currentPageIndex == pages.length - 1)
                 ? TextButton(
                     onPressed: () async {
-                      SharedPreferences preferences =
-                          await SharedPreferences.getInstance();
-                      preferences.setBool("isIntroVisited", true);
-                      Get.offNamed("/login");
+                      // SharedPreferences preferences =
+                      //     await SharedPreferences.getInstance();
+                      // preferences.setBool("isIntroVisited", true);
+                      Get.offNamed('/login');
                     },
                     child: const CircleAvatar(
                       radius: 30,
